@@ -1,6 +1,6 @@
 """Memorization Tool"""
 
-from db import add_flashcard_to_db, get_flashcards_from_db, update_flashcard_in_db
+from db import add_flashcard_to_db, get_flashcards_from_db, update_flashcard_in_db, delete_flashcard_from_db
 
 
 def display_menu():
@@ -60,7 +60,7 @@ def practice_flashcards():
                 user_choice = input()
                 match user_choice:
                     case "d":
-                        print("not implemented yet")
+                        delete_flashcard_from_db(fc.id)
                     case "e":
                         print(f"current question: {fc.question}")
                         print("please write a new question:")

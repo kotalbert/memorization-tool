@@ -41,3 +41,13 @@ def update_flashcard_in_db(flashcard_id: int, new_question: str, new_answer: str
             flashcard.question = new_question
             flashcard.answer = new_answer
             session.commit()
+
+
+def delete_flashcard_from_db(flashcard_id: int) -> None:
+    """Delete a flashcard from the database."""
+
+    with get_session() as session:
+        flashcard = session.query(Flashcard).get(flashcard_id)
+        if flashcard:
+            session.delete(flashcard)
+            session.commit()

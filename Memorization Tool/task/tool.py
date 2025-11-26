@@ -1,6 +1,6 @@
 """Memorization Tool"""
 
-from db import add_flashcard_to_db, get_flashcards_from_db
+from db import add_flashcard_to_db, get_flashcards_from_db, update_flashcard_in_db
 
 
 def display_menu():
@@ -55,7 +55,22 @@ def practice_flashcards():
             case "n":
                 continue
             case "u":
-                print("not implemented yet")
+                print("press \"d\" to delete the flashcard:")
+                print("press \"e\" to edit the flashcard:")
+                user_choice = input()
+                match user_choice:
+                    case "d":
+                        print("not implemented yet")
+                    case "e":
+                        print(f"current question: {fc.question}")
+                        print("please write a new question:")
+                        new_question = input()
+                        print(f"current answer: {fc.answer}")
+                        print("please write a new answer:")
+                        new_answer = input()
+                        update_flashcard_in_db(fc.id, new_question, new_answer)
+                    case _:
+                        print(f"{user_choice} is not an option")
             case "d":
                 print("not implemented yet")
             case "e":
@@ -68,8 +83,6 @@ def show_practice_menu():
     print("press \"y\" to see the answer:")
     print("press \"n\" to skip:")
     print("press \"u\" to update:")
-    print("press \"d\" to delete the flashcard:")
-    print("press \"e\" to edit the flashcard:")
 
 
 def handle_command():

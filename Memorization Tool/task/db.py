@@ -30,3 +30,14 @@ def get_flashcards_from_db() -> list[type[Flashcard]]:
     with get_session() as session:
         flashcards = session.query(Flashcard).all()
         return flashcards
+
+
+def update_flashcard_in_db(flashcard_id: int, new_question: str, new_answer: str) -> None:
+    """Update an existing flashcard in the database."""
+
+    with get_session() as session:
+        flashcard = session.query(Flashcard).get(flashcard_id)
+        if flashcard:
+            flashcard.question = new_question
+            flashcard.answer = new_answer
+            session.commit()

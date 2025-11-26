@@ -53,8 +53,8 @@ def practice_flashcards():
         match user_answer:
             case "y":
                 print(f"Answer: {fc.answer}")
-                print("Press \"y\" if your answer is correct:")
-                print("Press \"n\" if your answer is wrong:")
+                print("press \"y\" if your answer is correct:")
+                print("press \"n\" if your answer is wrong:")
                 user_feedback = input()
                 match user_feedback:
                     case "y":
@@ -91,10 +91,6 @@ def practice_flashcards():
                         update_flashcard_in_db(fc.id, new_question, new_answer)
                     case _:
                         print(f"{user_choice} is not an option")
-            case "d":
-                print("not implemented yet")
-            case "e":
-                print("not implemented yet")
             case _:
                 print(f"{user_answer} is not an option")
 

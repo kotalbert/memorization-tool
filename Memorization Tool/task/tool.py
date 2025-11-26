@@ -47,12 +47,29 @@ def practice_flashcards():
         return
     for fc in fcs:
         print(f"Question: {fc.question}")
-        print("Please press \"y\" to see the answer or press \"n\" to skip:")
+        show_practice_menu()
         user_answer = input()
-        if user_answer.strip() == "y":
-            print(f"Answer: {fc.answer}")
-        elif user_answer.strip() == "n":
-            continue
+        match user_answer:
+            case "y":
+                print(f"Answer: {fc.answer}")
+            case "n":
+                continue
+            case "u":
+                print("not implemented yet")
+            case "d":
+                print("not implemented yet")
+            case "e":
+                print("not implemented yet")
+            case _:
+                print(f"{user_answer} is not an option")
+
+
+def show_practice_menu():
+    print("press \"y\" to see the answer:")
+    print("press \"n\" to skip:")
+    print("press \"u\" to update:")
+    print("press \"d\" to delete the flashcard:")
+    print("press \"e\" to edit the flashcard:")
 
 
 def handle_command():

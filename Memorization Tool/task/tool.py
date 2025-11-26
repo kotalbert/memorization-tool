@@ -1,7 +1,6 @@
 """Memorization Tool"""
-from flashcard import Flashcard
 
-flashcards = []
+from db import add_flashcard_to_db, get_flashcards_from_db
 
 
 def display_menu():
@@ -34,8 +33,7 @@ def add_flashcard():
                         continue
                     else:
                         break
-                fc = Flashcard(question, answer)
-                flashcards.append(fc)
+                add_flashcard_to_db(question, answer)
             case "2":
                 return
             case _:
@@ -43,10 +41,11 @@ def add_flashcard():
 
 
 def practice_flashcards():
-    if len(flashcards) == 0:
+    fcs = get_flashcards_from_db()
+    if len(fcs) == 0:
         print("There is no flashcard to practice!")
         return
-    for fc in flashcards:
+    for fc in fcs:
         print(f"Question: {fc.question}")
         print("Please press \"y\" to see the answer or press \"n\" to skip:")
         user_answer = input()

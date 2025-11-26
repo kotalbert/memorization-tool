@@ -51,3 +51,14 @@ def delete_flashcard_from_db(flashcard_id: int) -> None:
         if flashcard:
             session.delete(flashcard)
             session.commit()
+
+
+def update_flashcard_box_in_db(flashcard_id: int, new_box: int) -> None:
+    """Update the box number of a flashcard in the database."""
+    assert new_box in {1, 2, 3}
+
+    with get_session() as session:
+        flashcard = session.query(Flashcard).get(flashcard_id)
+        if flashcard:
+            flashcard.box = new_box
+            session.commit()

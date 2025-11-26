@@ -13,6 +13,7 @@ class Flashcard(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     question = Column(String, nullable=False)
     answer = Column(String, nullable=False)
+    box = Column(Integer, default=1, nullable=False)
 
     def __repr__(self):
-        return f"Flashcard(id={self.id!r}, question={self.question!r}, answer={self.answer!r})"
+        return f"Flashcard(id={self.id!r}, question={self.question!r}, answer={self.answer!r}), box={self.box!r})"

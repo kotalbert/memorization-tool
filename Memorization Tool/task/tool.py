@@ -1,6 +1,7 @@
 """Memorization Tool"""
 
-from db import add_flashcard_to_db, get_flashcards_from_db, update_flashcard_in_db, delete_flashcard_from_db
+from db import add_flashcard_to_db, get_flashcards_from_db, update_flashcard_in_db, delete_flashcard_from_db, \
+    update_flashcard_box_in_db
 
 
 def display_menu():
@@ -52,6 +53,25 @@ def practice_flashcards():
         match user_answer:
             case "y":
                 print(f"Answer: {fc.answer}")
+                print("Press \"y\" if your answer is correct:")
+                print("Press \"n\" if your answer is wrong:")
+                user_feedback = input()
+                match user_feedback:
+                    case "y":
+                        #  move to the next box and proceed to the next flashcard
+                        #  should also handle the case when the flashcard is already in the last box
+                        #  in such case, it should be deleted from the database
+                        if fc.box == 3:
+                            delete_flashcard_from_db(fc.id)
+                        else:
+                            update_flashcard_box_in_db(fc.id, fc.box + 1)
+                        continue
+                    case "n":
+                        # move to the previous box and proceed to the next flashcard
+                        if fc.box > 1:
+                            update_flashcard_box_in_db(fc.id, fc.box - 1)
+                        continue
+
             case "n":
                 continue
             case "u":
